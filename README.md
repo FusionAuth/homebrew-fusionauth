@@ -1,5 +1,5 @@
 # homebrew-fusionauth
-macOS Homebrew tap for FusionAuth
+macOS [Homebrew](https://brew.sh/) tap for FusionAuth
 
 
 ```
