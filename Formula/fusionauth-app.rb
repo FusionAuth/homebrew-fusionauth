@@ -7,8 +7,8 @@ class FusionauthApp < Formula
   bottle :unneeded
 
   def install
-    system "mkdir", "-p", "fusionauth/fusionauth-app"
-    system "unzip", "-nq", "fusionauth-app-1.0.17.zip", "-d", "fusionauth"
+    #system "mkdir", "-p", "fusionauth/fusionauth-app"
+    #system "unzip", "-nq", "fusionauth-app-1.0.17.zip", "-d", "fusionauth"
   end
 
   test do

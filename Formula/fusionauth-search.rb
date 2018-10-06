@@ -7,8 +7,8 @@ class FusionauthSearch < Formula
   bottle :unneeded
 
   def install
-    system "mkdir", "-p", "fusionauth/fusionauth-search"
-    system "unzip", "-nq", "fusionauth-search-1.0.17.zip", "-d", "fusionauth"
+    #system "mkdir", "-p", "fusionauth/fusionauth-search"
+    #system "unzip", "-nq", "fusionauth-search-1.0.17.zip", "-d", "fusionauth"
   end
 
   test do
