@@ -10,8 +10,4 @@ class FusionauthApp < Formula
     mkdir_p "fusionauth"
     mv "fusionauth-app", "fusionauth/"
   end
-
-  test do
-    system "ls", "fusionauth/fusionauth-app"
-  end
 end
