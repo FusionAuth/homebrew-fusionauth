@@ -7,11 +7,11 @@ lass FusionAuthSearch < Formula
   bottle :unneeded
 
   def install
-    mkdir -p /usr/local/fusionauth/fusionauth-search
-    unzip -nq fusionauth-search-1.0.17.zip -d /usr/local/fusionauth
+    system "mkdir" "-p" "/usr/local/fusionauth/fusionauth-search"
+    system "unzip" "-nq" "fusionauth-search-1.0.17.zip" "-d" "/usr/local/fusionauth"
   end
 
   test do
-    ls /usr/local/inversoft/fusionauth-app
+    system "ls" "/usr/local/inversoft/fusionauth-search"
   end
 end
