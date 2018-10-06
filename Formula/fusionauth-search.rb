@@ -1,4 +1,4 @@
-lass FusionAuthSearch < Formula
+class FusionAuthSearch < Formula
   desc "FusionAuth Search"
   homepage "https://fusionauth.io"
   url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.0.17/fusionauth-search-1.0.17.zip"
