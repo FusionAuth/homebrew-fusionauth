@@ -1,2 +1,2 @@
-# homebrew-fusionauth-app
-macOS Homebrew tap for the FusionAuth App bundle
+# homebrew-fusionauth
+macOS Homebrew tap for FusionAuth
