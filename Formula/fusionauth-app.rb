@@ -7,11 +7,11 @@ class FusionauthApp < Formula
   bottle :unneeded
 
   def install
-    system "mkdir" "-p" "/usr/local/fusionauth/fusionauth-app"
-    system "unzip" "-nq" "fusionauth-app-1.0.17.zip" "-d" "/usr/local/fusionauth"
+    system "mkdir", "-p", "/usr/local/fusionauth/fusionauth-app"
+    system "unzip", "-nq", "fusionauth-app-1.0.17.zip", "-d", "/usr/local/fusionauth"
   end
 
   test do
-    system "ls" "/usr/local/inversoft/fusionauth-app"
+    system "ls", "/usr/local/inversoft/fusionauth-app"
   end
 end

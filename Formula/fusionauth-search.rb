@@ -7,11 +7,11 @@ class FusionauthSearch < Formula
   bottle :unneeded
 
   def install
-    system "mkdir" "-p" "/usr/local/fusionauth/fusionauth-search"
-    system "unzip" "-nq" "fusionauth-search-1.0.17.zip" "-d" "/usr/local/fusionauth"
+    system "mkdir", "-p", "/usr/local/fusionauth/fusionauth-search"
+    system "unzip", "-nq", "fusionauth-search-1.0.17.zip", "-d", "/usr/local/fusionauth"
   end
 
   test do
-    system "ls" "/usr/local/inversoft/fusionauth-search"
+    system "ls", "/usr/local/inversoft/fusionauth-search"
   end
 end
