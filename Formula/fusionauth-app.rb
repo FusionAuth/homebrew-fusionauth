@@ -1,4 +1,4 @@
-class FusionAuthApp < Formula
+class FusionauthApp < Formula
   desc "FusionAuth App"
   homepage "https://fusionauth.io"
   url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.0.17/fusionauth-app-1.0.17.zip"
