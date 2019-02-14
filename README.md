@@ -21,4 +21,5 @@ brew services start fusionauth-app
 
 ## Config
 
+Logs: `/usr/local/var/log/fusionauth/`
 Config file: `/usr/local/etc/fusionauth/fusionauth.properties`
