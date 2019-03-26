@@ -1,8 +1,8 @@
 class FusionauthSearch < Formula
   desc "FusionAuth Search"
   homepage "https://fusionauth.io"
-  url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.4.0/fusionauth-search-1.4.0.zip"
-  sha256 "385fbc5029bd7f61137c688a3965ce536b78d4b31653fbb7dc8fcad26870321c"
+  url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.5.0/fusionauth-search-1.5.0.zip"
+  sha256 "fb455c27354a96cd31d67d6e7573e248109f8b6a707aeec7ca53e8b1cce6a875"
 
   depends_on :java => "1.8"
 
