@@ -5,6 +5,9 @@ Easy installation of FusionAuth via Homebrew.
 
 Simply install and start the services. Then navigate to http://localhost:9011 and follow the setup.
 
+The following examples assume you will be installing both `fusionauth-app` and `fusionauth-search`. If you have access to another instance of Elasticsearch that meets the minimum requirement, you may omit the `fusionauth-search` service.
+
+
 ## Install
 
 ```bash
@@ -17,6 +20,13 @@ brew install fusionauth-app fusionauth-search
 ```bash
 brew services start fusionauth-search
 brew services start fusionauth-app
+```
+
+## Upgrade
+
+```bash
+brew upgrade fusionauth-app
+brew upgrade fusionauth-search
 ```
 
 ## Config
