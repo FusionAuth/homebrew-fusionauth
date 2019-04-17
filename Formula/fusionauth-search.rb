@@ -4,27 +4,27 @@ class FusionauthSearch < Formula
   url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.5.0/fusionauth-search-1.5.0.zip"
   sha256 "fb455c27354a96cd31d67d6e7573e248109f8b6a707aeec7ca53e8b1cce6a875"
 
-  depends_on :java => "1.8"
-
   bottle :unneeded
 
   def install
     prefix.install "fusionauth-search"
-    etc.install "config" => "fusionauth" unless File.exist? etc/"fusionauth"
+    etc.install "config" => "fusionauth" unless File.exists? etc/"fusionauth"
     prefix.install_symlink etc/"fusionauth" => "config"
+    (var/"log/fusionauth").mkpath unless File.exists? var/"log/fusionauth"
+    prefix.install_symlink var/"log/fusionauth" => "logs"
+    (var/"fusionauth/java").mkpath unless File.exists? var/"fusionauth/java"
+    prefix.install_symlink var/"fusionauth/java"
+    (var/"fusionauth/data").mkpath unless File.exists? var/"fusionauth/data"
+    prefix.install_symlink var/"fusionauth/data"
 
     # Hide all the dylibs from brew
-    system("tar", "-cf", prefix/"fusionauth-search/elasticsearch/modules.tar" , prefix/"fusionauth-search/elasticsearch/modules")
+    system("tar", "-cPf", prefix/"fusionauth-search/elasticsearch/modules.tar", prefix/"fusionauth-search/elasticsearch/modules", "-C", prefix/"fusionauth-search/elasticsearch")
     (prefix/"fusionauth-search/elasticsearch/modules").rmtree
   end
 
   def post_install
-    (var/"fusionauth/data").mkpath
-    prefix.install_symlink var/"fusionauth/data"
-    (var/"log/fusionauth").mkpath
-
     # Fix all the dylibs now that brew will leave them alone
-    system("tar", "-xf", prefix/"fusionauth-search/elasticsearch/modules.tar", "-C", "/")
+    system("tar", "-xPf", prefix/"fusionauth-search/elasticsearch/modules.tar", "-C", prefix/"fusionauth-search/elasticsearch")
     rm_f prefix/"fusionauth-search/elasticsearch/modules.tar"
   end
 
