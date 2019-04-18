@@ -7,7 +7,6 @@ class FusionauthApp < Formula
   bottle :unneeded
 
   def install
-    prefix.install "bin" => "sbin"
     prefix.install "fusionauth-app"
     etc.install "config" => "fusionauth" unless File.exists? etc/"fusionauth"
     prefix.install_symlink etc/"fusionauth" => "config"
@@ -15,21 +14,6 @@ class FusionauthApp < Formula
     prefix.install_symlink var/"fusionauth/java"
     (var/"log/fusionauth").mkpath unless File.exists? var/"log/fusionauth"
     prefix.install_symlink var/"log/fusionauth" => "logs"
-
-    (bin/"fusionauth").write <<~EOS
-      #!/bin/bash
-      case "$1" in
-        start)
-          #{prefix}/sbin/startup.sh
-          ;;
-        stop)
-          #{prefix}/sbin/shutdown.sh
-          ;;
-        *)
-          echo "Options are start/stop"
-          ;;
-      esac
-    EOS
   end
 
   def post_install
@@ -41,8 +25,6 @@ class FusionauthApp < Formula
       Config: #{etc}/fusionauth/fusionauth.properties
     EOS
   end
-
-  plist_options :manual => "fusionauth start"
 
   # http://www.manpagez.com/man/5/launchd.plist/
   def plist; <<~EOS
