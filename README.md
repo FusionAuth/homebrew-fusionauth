@@ -34,3 +34,11 @@ brew upgrade fusionauth-search
 
 Logs: `/usr/local/var/log/fusionauth/`
 Config file: `/usr/local/etc/fusionauth/fusionauth.properties`
+
+
+
+## Release
+
+```bash
+./release.sh <version>
+```
