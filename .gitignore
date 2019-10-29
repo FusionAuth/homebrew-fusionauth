@@ -1,3 +1,5 @@
 # Intellij stuff
 .idea
 *.iws
+fusionauth-app-*.zip
+fusionauth-search-*.zip
