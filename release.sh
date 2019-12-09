@@ -8,7 +8,7 @@ if ! test "./fusionauth-app-${1}.zip"; then
   wget "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/${1}/fusionauth-app-${1}.zip"
 fi
 
-if ! test "./fusionauth-app-${1}.zip"; then
+if ! test "./fusionauth-search-${1}.zip"; then
   wget "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/${1}/fusionauth-search-${1}.zip"
 fi
 
