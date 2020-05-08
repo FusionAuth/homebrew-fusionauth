@@ -1,8 +1,8 @@
 class FusionauthSearch < Formula
   desc "FusionAuth Search"
   homepage "https://fusionauth.io"
-  url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.16.0-RC.1/fusionauth-search-1.16.0-RC.1.zip"
-  sha256 "87df32d6c5ac3543ab7052680a301e2df92852c7b7313316b05e4092c2ab740a"
+  url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.16.0/fusionauth-search-1.16.0.zip"
+  sha256 "6f2f8dbd41824b719c376838cd9066a8bc18de98b3d8d6fb6a7916ba41fa3a56"
 
   bottle :unneeded
 
