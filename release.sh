@@ -28,3 +28,6 @@ git commit -m"release ${1}"
 git push
 git tag ${1}
 git push --tags
+
+rm fusionauth-app-${1}.zip
+rm fusionauth-search-${1}.zip
