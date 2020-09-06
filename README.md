@@ -36,9 +36,14 @@ Logs: `/usr/local/var/log/fusionauth/`
 Config file: `/usr/local/etc/fusionauth/fusionauth.properties`
 
 
-
 ## Release
 
+Using Savant
 ```bash
-./release.sh <version>
+sb publish
+```
+
+Without using Savant
+```bash
+./publish.sh <version>
 ```
