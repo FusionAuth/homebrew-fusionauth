@@ -37,10 +37,8 @@ target(name: "test", description: "No-op") {
 }
 
 target(name: "publish", description: "Publish the home brew packages.") {
-  if (!switches.empty) {
-    if (!cleanExecute("./publish.sh", "${project.version}" as String)) {
-      fail("Failed to publish Homebrew fusionauth-app [${project.version}]")
-    }
+  if (!cleanExecute("./publish.sh", "${project.version}" as String)) {
+    fail("Failed to publish Homebrew fusionauth-app [${project.version}]")
   }
 }
 
