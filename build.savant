@@ -14,7 +14,7 @@
  * language governing permissions and limitations under the License.
  */
 
-project(group: "io.fusionauth", name: "homebrew-fusionauth", version: "1.19.8", licenses: ["ApacheV2_0"]) {
+project(group: "io.fusionauth", name: "homebrew-fusionauth", version: "1.19.9", licenses: ["ApacheV2_0"]) {
   workflow {
     standard()
   }
