@@ -1,8 +1,8 @@
 class FusionauthApp < Formula
   desc "FusionAuth App"
   homepage "https://fusionauth.io"
-  url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.22.2/fusionauth-app-1.22.2.zip"
-  sha256 "832b1d9ec7c083ede54a9f661629a94ed45e7f158df0b37f84c933cd4a7ed625"
+  url "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/1.23.0/fusionauth-app-1.23.0.zip"
+  sha256 "4f093554e80c14230bc352f0799cc7f5ba9a82749f63b5424837e99cef8c36ef"
 
   bottle :unneeded
 
