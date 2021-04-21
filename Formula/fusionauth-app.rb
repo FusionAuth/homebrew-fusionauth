@@ -1,8 +1,8 @@
 class FusionauthApp < Formula
   desc "FusionAuth App"
   homepage "https://fusionauth.io"
-  url "https://files.fusionauth.io/fusionauth/1.25.0/fusionauth-app-1.25.0.zip"
-  sha256 "af5a4d640b515a8edea8481d01f966e3ec59ea920979cdd135bcefcc5b23884e"
+  url "https://files.fusionauth.io/fusionauth/1.26.0/fusionauth-app-1.26.0.zip"
+  sha256 "e2a5ff04a83decd77b5cc2f328071e6734fb788fc6620fa2a84695ce36f12e87"
 
   bottle :unneeded
 
