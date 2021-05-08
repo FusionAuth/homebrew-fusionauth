@@ -5,11 +5,11 @@
 
 # Download files
 if ! test -f "./fusionauth-app-${1}.zip"; then
-  wget "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/${1}/fusionauth-app-${1}.zip"
+  wget "https://files.fusionauth.io/products/fusionauth/${1}/fusionauth-app-${1}.zip"
 fi
 
 if ! test -f "./fusionauth-search-${1}.zip"; then
-  wget "https://storage.googleapis.com/inversoft_products_j098230498/products/fusionauth/${1}/fusionauth-search-${1}.zip"
+  wget "https://files.fusionauth.io/products/fusionauth/${1}/fusionauth-search-${1}.zip"
 fi
 
 # Update URL
