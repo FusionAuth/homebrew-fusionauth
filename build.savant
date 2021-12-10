@@ -18,7 +18,7 @@ project(group: "io.fusionauth", name: "homebrew-fusionauth", version: "1.32.1", 
   workflow {
     fetch {
       cache()
-      url(url: "https://external.savant.fusionauth.io")
+      url(url: "https://repository.savantbuild.org")
     }
     publish {
       cache()
