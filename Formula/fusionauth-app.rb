@@ -4,8 +4,6 @@ class FusionauthApp < Formula
   url "https://files.fusionauth.io/products/fusionauth/1.34.0/fusionauth-app-1.34.0.zip"
   sha256 "2551288c6ec71bdb2bca0d034f20b495aa22fa4d88a3d8c86b718db45cd95e13"
 
-  bottle :unneeded
-
   def install
     prefix.install "fusionauth-app"
     etc.install "config" => "fusionauth" unless File.exists? etc/"fusionauth"
