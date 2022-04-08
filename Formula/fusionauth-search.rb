@@ -1,8 +1,8 @@
 class FusionauthSearch < Formula
   desc "FusionAuth Search"
   homepage "https://fusionauth.io"
-  url "https://files.fusionauth.io/products/fusionauth/1.35.0/fusionauth-search-1.35.0.zip"
-  sha256 "4402aa21d47ddb73672e001939ded25383b0da78eafb8d44e51bfe098cb781c3"
+  url "https://files.fusionauth.io/products/fusionauth/1.36.0/fusionauth-search-1.36.0.zip"
+  sha256 "f8a8cf40fcb73e7503b5bd32ea01f62c346a79aadec87aecc16257e9f9195ec0"
 
   bottle :unneeded
 
