@@ -4,8 +4,6 @@ class FusionauthSearch < Formula
   url "https://files.fusionauth.io/products/fusionauth/1.36.0/fusionauth-search-1.36.0.zip"
   sha256 "f8a8cf40fcb73e7503b5bd32ea01f62c346a79aadec87aecc16257e9f9195ec0"
 
-  bottle :unneeded
-
   def install
     prefix.install "fusionauth-search"
     etc.install "config" => "fusionauth" unless File.exists? etc/"fusionauth"
