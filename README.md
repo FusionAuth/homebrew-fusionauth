@@ -3,7 +3,7 @@ macOS [Homebrew](https://brew.sh/) tap for FusionAuth
 
 Easy installation of FusionAuth via Homebrew.
 
-Simply install and start the services. Then navigate to http://localhost:9011 and follow the setup.
+Simply install and start the services. Then navigate to http://localhost:9011 and follow the setup prompts.
 
 The following examples assume you will be installing both `fusionauth-app` and `fusionauth-search`.
 If you have access to another instance of Elasticsearch that meets the minimum requirement, you may omit the `fusionauth-search` service.
