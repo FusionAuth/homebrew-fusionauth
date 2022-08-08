@@ -43,7 +43,7 @@ class FusionauthApp < Formula
         <key>RunAtLoad</key>
         <true/>
         <key>WorkingDirectory</key>
-        <string>#{prefix}/fusionauth-app/apache-tomcat/bin</string>
+        <string>#{prefix}/fusionauth-app/bin</string>
         <key>StandardOutPath</key>
         <string>#{var}/log/fusionauth/fusionauth-app.log</string>
         <key>StandardErrorPath</key>
