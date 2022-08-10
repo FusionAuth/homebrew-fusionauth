@@ -1,8 +1,8 @@
 class FusionauthApp < Formula
   desc "FusionAuth App"
   homepage "https://fusionauth.io"
-  url "https://files.fusionauth.io/products/fusionauth/1.36.4/fusionauth-app-1.36.4.zip"
-  sha256 "e1a1f0f1641e53c9dd8db370a7df44d2b5027e78ff66ffa3c53f26d459c93470"
+  url "https://files.fusionauth.io/products/fusionauth/1.37.0/fusionauth-app-1.37.0.zip"
+  sha256 "8df35f73ffc3d9dde9724e9e3ad3093b80e0084f4dcc98d7f9130965dd15755b"
 
   def install
     prefix.install "fusionauth-app"
@@ -43,7 +43,7 @@ class FusionauthApp < Formula
         <key>RunAtLoad</key>
         <true/>
         <key>WorkingDirectory</key>
-        <string>#{prefix}/fusionauth-app/apache-tomcat/bin</string>
+        <string>#{prefix}/fusionauth-app/bin</string>
         <key>StandardOutPath</key>
         <string>#{var}/log/fusionauth/fusionauth-app.log</string>
         <key>StandardErrorPath</key>
