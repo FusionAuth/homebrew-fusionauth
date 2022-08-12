@@ -1,31 +1,33 @@
 class FusionauthApp < Formula
   desc "FusionAuth App"
   homepage "https://fusionauth.io"
-  url "https://files.fusionauth.io/products/fusionauth/1.37.0/fusionauth-app-1.37.0.zip"
-  sha256 "8df35f73ffc3d9dde9724e9e3ad3093b80e0084f4dcc98d7f9130965dd15755b"
+  url "https://files.fusionauth.io/products/fusionauth/1.37.2/fusionauth-app-1.37.2.zip"
+  sha256 "d795bedfafe659255f87f6ea178f3f6d5ae8b334e6f3fe9c631283c963db995e"
 
   def install
     prefix.install "fusionauth-app"
-    etc.install "config" => "fusionauth" unless File.exists? etc/"fusionauth"
-    prefix.install_symlink etc/"fusionauth" => "config"
-    (var/"fusionauth/java").mkpath unless File.exists? var/"fusionauth/java"
-    prefix.install_symlink var/"fusionauth/java"
-    (var/"log/fusionauth").mkpath unless File.exists? var/"log/fusionauth"
-    prefix.install_symlink var/"log/fusionauth" => "logs"
+    etc.install "config" => "fusionauth" unless File.exists? etc / "fusionauth"
+    prefix.install_symlink etc / "fusionauth" => "config"
+    (var / "fusionauth/java").mkpath unless File.exists? var / "fusionauth/java"
+    prefix.install_symlink var / "fusionauth/java"
+    (var / "log/fusionauth").mkpath unless File.exists? var / "log/fusionauth"
+    prefix.install_symlink var / "log/fusionauth" => "logs"
   end
 
   def post_install
     #noop
   end
 
-  def caveats; <<~EOS
+  def caveats
+    <<~EOS
       Logs:   #{var}/log/fusionauth/fusionauth-app.log
       Config: #{etc}/fusionauth/fusionauth.properties
     EOS
   end
 
   # http://www.manpagez.com/man/5/launchd.plist/
-  def plist; <<~EOS
+  def plist
+    <<~EOS
       <?xml version="1.0" encoding="UTF-8"?>
       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
       <plist version="1.0">
@@ -37,8 +39,7 @@ class FusionauthApp < Formula
         <key>ProgramArguments</key>
         <array>
           <string>sh</string>
-          <string>catalina.sh</string>
-          <string>run</string>
+          <string>start.sh</string>
         </array>
         <key>RunAtLoad</key>
         <true/>
