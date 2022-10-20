@@ -43,11 +43,11 @@ sed -i -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-app.rb
 sum=`cat ./fusionauth-search-${1}.zip.sha256|awk -F" " '{print $1}'`
 sed -i -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-search.rb
 
+rm fusionauth-app-${1}.zip.sha256
+rm fusionauth-search-${1}.zip.sha256
+
 git add .
 git commit -m"release ${1}"
 git push
 git tag ${1}
 git push --tags
-
-rm fusionauth-app-${1}.zip.sha256
-rm fusionauth-search-${1}.zip.sha256
