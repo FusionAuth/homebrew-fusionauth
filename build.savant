@@ -14,8 +14,6 @@
  * language governing permissions and limitations under the License.
  */
 
-savantVersion = "2.0.0-RC.1"
-
 project(group: "io.fusionauth", name: "homebrew-fusionauth", version: "1.41.0-EAP.20221022", licenses: ["ApacheV2_0"]) {
   workflow {
     fetch {
@@ -29,7 +27,7 @@ project(group: "io.fusionauth", name: "homebrew-fusionauth", version: "1.41.0-EA
 }
 
 // Plugins
-idea = loadPlugin(id: "org.savantbuild.plugin:idea:${savantVersion}")
+idea = loadPlugin(id: "org.savantbuild.plugin:idea:2.0.0-RC.2")
 
 target(name: "clean", description: "No-op") {
 }
