@@ -27,7 +27,7 @@ project(group: "io.fusionauth", name: "homebrew-fusionauth", version: "1.46.0", 
 }
 
 // Plugins
-idea = loadPlugin(id: "org.savantbuild.plugin:idea:2.0.0-RC.6")
+idea = loadPlugin(id: "org.savantbuild.plugin:idea:2.0.0-RC.7")
 
 target(name: "clean", description: "No-op") {
 }
