@@ -4,3 +4,4 @@
 fusionauth-app-*.zip
 fusionauth-search-*.zip
 **/.DS_Store
+.savant/cache
