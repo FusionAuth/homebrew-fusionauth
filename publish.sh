@@ -33,15 +33,15 @@ wget --no-verbose "https://files.fusionauth.io/products/fusionauth/${1}/fusionau
 # BSD: sed -i '' -E
 
 # Update URL
-sed -i '' -E "s/fusionauth\/(.*)\/fusionauth-app-(.*).zip\"$/fusionauth\/${1}\/fusionauth-app-${1}.zip\"/" ./Formula/fusionauth-app.rb
-sed -i '' -E "s/fusionauth\/(.*)\/fusionauth-search-(.*).zip\"$/fusionauth\/${1}\/fusionauth-search-${1}.zip\"/" ./Formula/fusionauth-search.rb
+sed -i -E "s/fusionauth\/(.*)\/fusionauth-app-(.*).zip\"$/fusionauth\/${1}\/fusionauth-app-${1}.zip\"/" ./Formula/fusionauth-app.rb
+sed -i -E "s/fusionauth\/(.*)\/fusionauth-search-(.*).zip\"$/fusionauth\/${1}\/fusionauth-search-${1}.zip\"/" ./Formula/fusionauth-search.rb
 
 # Update SHA 256 sum
 sum=`cat ./fusionauth-app-${1}.zip.sha256|awk -F" " '{print $1}'`
-sed -i '' -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-app.rb
+sed -i -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-app.rb
 
 sum=`cat ./fusionauth-search-${1}.zip.sha256|awk -F" " '{print $1}'`
-sed -i '' -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-search.rb
+sed -i -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-search.rb
 
 rm fusionauth-app-${1}.zip.sha256
 rm fusionauth-search-${1}.zip.sha256
