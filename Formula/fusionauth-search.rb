@@ -1,8 +1,8 @@
 class FusionauthSearch < Formula
   desc "FusionAuth Search"
   homepage "https://fusionauth.io"
-  url "https://files.fusionauth.io/products/fusionauth/1.51.2/fusionauth-search-1.51.2.zip"
-  sha256 "8c63ece5062f5c748a2dc2462abcccf8507cb42fc54924a087c6e8e9bdcd68aa"
+  url "https://files.fusionauth.io/products/fusionauth/1.52.0/fusionauth-search-1.52.0.zip"
+  sha256 "053b0115f4966d94943ecaff87ce62ed8dd4c2fef14d179b2832d776064d8df9"
 
   def install
     prefix.install "fusionauth-search"
