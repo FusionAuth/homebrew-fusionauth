@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2023, FusionAuth, All Rights Reserved
+ * Copyright (c) 2019-2024, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ project(group: "io.fusionauth", name: "homebrew-fusionauth", version: "1.54.0", 
 }
 
 // Plugins
-idea = loadPlugin(id: "org.savantbuild.plugin:idea:2.0.0-RC.7")
+idea = loadPlugin(id: "org.savantbuild.plugin:idea:2.0.0")
 
 target(name: "clean", description: "No-op") {
 }
