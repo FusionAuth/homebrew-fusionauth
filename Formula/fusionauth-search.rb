@@ -6,13 +6,14 @@ class FusionauthSearch < Formula
 
   def install
     prefix.install "fusionauth-search"
-    etc.install "config" => "fusionauth" unless File.exists? etc/"fusionauth"
+    etc.install "config" => "fusionauth"
+    (prefix/"config").unlink if (prefix/"config").exist?
     prefix.install_symlink etc/"fusionauth" => "config"
-    (var/"log/fusionauth").mkpath unless File.exists? var/"log/fusionauth"
+    (var/"log/fusionauth").mkpath
     prefix.install_symlink var/"log/fusionauth" => "logs"
-    (var/"fusionauth/java").mkpath unless File.exists? var/"fusionauth/java"
+    (var/"fusionauth/java").mkpath
     prefix.install_symlink var/"fusionauth/java"
-    (var/"fusionauth/data").mkpath unless File.exists? var/"fusionauth/data"
+    (var/"fusionauth/data").mkpath
     prefix.install_symlink var/"fusionauth/data"
 
     # Hide all the dylibs from brew
