@@ -25,32 +25,11 @@ class FusionauthApp < Formula
     EOS
   end
 
-  # http://www.manpagez.com/man/5/launchd.plist/
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-        <key>KeepAlive</key>
-        <true/>
-        <key>Label</key>
-        <string>#{plist_name}</string>
-        <key>ProgramArguments</key>
-        <array>
-          <string>sh</string>
-          <string>start.sh</string>
-        </array>
-        <key>RunAtLoad</key>
-        <true/>
-        <key>WorkingDirectory</key>
-        <string>#{prefix}/fusionauth-app/bin</string>
-        <key>StandardOutPath</key>
-        <string>#{var}/log/fusionauth/fusionauth-app.log</string>
-        <key>StandardErrorPath</key>
-        <string>#{var}/log/fusionauth/fusionauth-app.log</string>
-      </dict>
-      </plist>
-    EOS
+  service do
+    run ["sh", "start.sh"]
+    keep_alive true
+    working_dir opt_prefix/"fusionauth-app/bin"
+    log_path var/"log/fusionauth/fusionauth-app.log"
+    error_log_path var/"log/fusionauth/fusionauth-app.log"
   end
 end
