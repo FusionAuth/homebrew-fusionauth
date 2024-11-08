@@ -55,9 +55,9 @@ jobs:
           brew services
           brew services start postgresql
           sleep 10
-          brew services stop fusionauth-search
+          brew services start fusionauth-search
           sleep 10
-          brew services stop fusionauth-app
+          brew services start fusionauth-app
           sleep 10
           brew services
           sleep 10
