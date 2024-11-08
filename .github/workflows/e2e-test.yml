@@ -64,6 +64,7 @@ jobs:
           brew services
           curl http://localhost:9011/api/status
           sleep 10
+          cat /opt/homebrew/var/log/fusionauth/fusionauth-app.log
           brew services stop fusionauth-app
           sleep 10
           brew services stop fusionauth-search
