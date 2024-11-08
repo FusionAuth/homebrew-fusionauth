@@ -6,11 +6,11 @@ class FusionauthApp < Formula
 
   def install
     prefix.install "fusionauth-app"
-    etc.install "config" => "fusionauth" unless File.exists? etc / "fusionauth"
+    etc.install "config" => "fusionauth" unless File.exist? etc / "fusionauth"
     prefix.install_symlink etc / "fusionauth" => "config"
-    (var / "fusionauth/java").mkpath unless File.exists? var / "fusionauth/java"
+    (var / "fusionauth/java").mkpath unless File.exist? var / "fusionauth/java"
     prefix.install_symlink var / "fusionauth/java"
-    (var / "log/fusionauth").mkpath unless File.exists? var / "log/fusionauth"
+    (var / "log/fusionauth").mkpath unless File.exist? var / "log/fusionauth"
     prefix.install_symlink var / "log/fusionauth" => "logs"
   end
 
