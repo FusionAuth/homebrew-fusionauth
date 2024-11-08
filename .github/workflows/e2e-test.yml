@@ -1,0 +1,57 @@
+# This workflow performs a full End 2 End test of the App
+# It runs the test on the last 5 iOS releases.
+
+name: E2E Test with latest FusionAuth
+
+on:
+  # Triggers the workflow on pull request events but only for default and protected branches
+  pull_request:
+    branches: [ "main" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "e2e-test"
+  e2e-test:
+    name: End 2 End Test
+
+    permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+
+    # The type of runner that the job will run on
+    # https://xcodereleases.com/
+    # https://developer.apple.com/support/xcode/
+    # https://developer.apple.com/documentation/xcode-release-notes
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ "macos-14", "macos-13" ]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checkout the repository.
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+
+      # Install FusionAuth with brew.
+      - name: Install FusionAuth
+        env:
+          FUSIONAUTH_APP_KICKSTART_FILE: "kickstart/kickstart.json"
+          DATABASE_URL: "jdbc:postgresql://db:5432/fusionauth"
+          DATABASE_ROOT_USERNAME: "${{ github.actor }}"
+          DATABASE_ROOT_PASSWORD: ""
+          DATABASE_USERNAME: "fusionauth"
+          DATABASE_PASSWORD: "fusionauth"
+        run: |
+          brew install postgresql
+          brew install --formula ./Formula/fusionauth-search.rb -v
+          brew install --formula ./Formula/fusionauth-app.rb -v
+          brew services start fusionauth-search
+          brew services start fusionauth-app
+          brew services
