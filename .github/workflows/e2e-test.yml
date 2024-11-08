@@ -62,3 +62,15 @@ jobs:
           brew services
           sleep 10
           brew services
+          curl http://localhost:9011/api/status
+          sleep 10
+          brew services stop fusionauth-app
+          sleep 10
+          brew services stop fusionauth-search
+          sleep 10
+          brew services stop postgresql
+          sleep 10
+          brew services
+          sleep 10
+          brew uninstall --formula ./Formula/fusionauth-app.rb -v
+          brew uninstall --formula ./Formula/fusionauth-search.rb -v
