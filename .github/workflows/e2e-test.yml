@@ -52,6 +52,13 @@ jobs:
           brew install postgresql
           brew install --formula ./Formula/fusionauth-search.rb -v
           brew install --formula ./Formula/fusionauth-app.rb -v
+          brew services
+          sleep 20
+          brew services stop fusionauth-search
+          brew services stop fusionauth-app
+          brew services
+          sleep 20
           brew services start fusionauth-search
           brew services start fusionauth-app
+          sleep 20
           brew services
