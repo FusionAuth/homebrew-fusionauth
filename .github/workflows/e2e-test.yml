@@ -89,7 +89,7 @@ jobs:
       - name: Check FusionAuth status
         run: |
           for i in {1..10}; do
-            if curl -s http://localhost:9011/api/status | grep -q "OK"; then
+            if curl -s http://localhost:9011/api/status | grep -qi "ok"; then
               echo "FusionAuth is up and running."
               exit 0
               break
