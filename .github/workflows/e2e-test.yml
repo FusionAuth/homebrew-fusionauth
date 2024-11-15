@@ -84,7 +84,7 @@ jobs:
       - name: Start FusionAuth App
         run: brew services start fusionauth-app -v
 
-      # Check 10 times with increasing wait times
+      # Check FusionAuth status 10 times with increasing wait times
       # Continue if FusionAuth status is OK or fail at the end.
       - name: Check FusionAuth status
         run: |
@@ -95,6 +95,22 @@ jobs:
               break
             else
               echo "FusionAuth is not up and running. Waiting for $(expr 10 \* $i) seconds."
+              sleep $(expr 10 \* $i)
+            fi
+          done
+
+      # Check KickstartRunner execution 10 times with increasing wait times
+      # Continue if KickstartRunner execution is OK or fail at the end.
+      # TODO - use webhook instead https://fusionauth.io/docs/extend/events-and-webhooks/events/kickstart-success
+      - name: Check KickstartRunner execution
+        run: |
+          for i in {1..10}; do
+            if cat $(brew --prefix)/var/log/fusionauth/fusionauth-app.log | grep -q "KickstartRunner" | grep -q "Summary"; then
+              echo "KickstartRunner execution is OK."
+              exit 0
+              break
+            else
+              echo "KickstartRunner execution is not OK. Waiting for $(expr 10 \* $i) seconds."
               sleep $(expr 10 \* $i)
             fi
           done
