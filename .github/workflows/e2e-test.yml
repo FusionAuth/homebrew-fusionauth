@@ -50,7 +50,7 @@ jobs:
           
       # Add PostgreSQL to the PATH.
       - name: Add PostgreSQL to the PATH
-        run: echo 'export PATH="/opt/homebrew/opt/postgresql@${{ matrix.postgresql-version }}/bin:$PATH"' >> $GITHUB_ENV
+        run: echo "$(brew --prefix postgresql@${{matrix.postgresql-version }})/bin" >> $GITHUB_PATH
 
       # Add PostgreSQL fusionauth user with default password.
       - name: Add PostgreSQL fusionauth user
@@ -71,9 +71,9 @@ jobs:
       # Configure FusionAuth App with silent mode.
       - name: Configure FusionAuth App
         run: |
-          echo "" >> /opt/homebrew/etc/fusionauth/fusionauth.properties
-          echo "fusionauth-app.kickstart.file=kickstart/kickstart.json" >> /opt/homebrew/etc/fusionauth/fusionauth.properties
-          echo "fusionauth-app.silent-mode=true" >> /opt/homebrew/etc/fusionauth/fusionauth.properties
+          echo "" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          echo "fusionauth-app.kickstart.file=kickstart/kickstart.json" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          echo "fusionauth-app.silent-mode=true" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
 
       # Start FusionAuth Search.
       - name: Start FusionAuth Search
