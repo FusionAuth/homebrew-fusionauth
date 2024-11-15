@@ -74,6 +74,7 @@ jobs:
           echo "" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
           echo "fusionauth-app.kickstart.file=kickstart/kickstart.json" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
           echo "fusionauth-app.silent-mode=true" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          cat $(brew --prefix)/etc/fusionauth/fusionauth.properties
 
       # Start FusionAuth Search.
       - name: Start FusionAuth Search
@@ -85,11 +86,15 @@ jobs:
 
       # Wait for FusionAuth App to start and run Quickstart.
       - name: Wait for FusionAuth App to start and configure
-        run: |
-          sleep 20
-          curl http://localhost:9011/api/status
-          sleep 10
-          cat /opt/homebrew/var/log/fusionauth/fusionauth-app.log
+        run: sleep 30
+
+      # Read FusionAuth App logs.
+      - name: Read FusionAuth App logs
+        run: cat $(brew --prefix)/var/log/fusionauth/fusionauth-app.log
+
+      # Connect to FusionAuth App.
+      - name: Connect to FusionAuth App
+        run: curl http://localhost:9011/api/status
 
       # Perform E2E test.
       # tbd
