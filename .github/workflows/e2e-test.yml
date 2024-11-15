@@ -105,7 +105,7 @@ jobs:
       - name: Check KickstartRunner execution
         run: |
           for i in {1..10}; do
-            if cat $(brew --prefix)/var/log/fusionauth/fusionauth-app.log | grep -q "KickstartRunner" | grep -q "Summary"; then
+            if cat $(brew --prefix)/var/log/fusionauth/fusionauth-app.log | grep "KickstartRunner" | grep -q "Summary"; then
               echo "KickstartRunner execution is OK."
               exit 0
               break
