@@ -86,7 +86,7 @@ jobs:
 
       # Wait for FusionAuth App to start and run Quickstart.
       - name: Wait for FusionAuth App to start and configure
-        run: sleep 30
+        run: sleep 120
 
       # Read FusionAuth App logs.
       - name: Read FusionAuth App logs
