@@ -32,6 +32,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ "macos-14", "macos-13" ]
+        postgresql-version: [ "14", "15", "16" ]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -40,38 +41,67 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       # Install FusionAuth with brew.
-      - name: Install FusionAuth
-        env:
-          FUSIONAUTH_APP_KICKSTART_FILE: "kickstart/kickstart.json"
-          DATABASE_URL: "jdbc:postgresql://db:5432/fusionauth"
-          DATABASE_ROOT_USERNAME: "${{ github.actor }}"
-          DATABASE_ROOT_PASSWORD: ""
-          DATABASE_USERNAME: "fusionauth"
-          DATABASE_PASSWORD: "fusionauth"
+      - name: Install PostgreSQL
+        run: brew install postgresql@${{ matrix.postgresql-version }} -v
+          
+      # Start PostgreSQL with brew.
+      - name: Start PostgreSQL
+        run: brew services start postgresql@${{ matrix.postgresql-version }} -v
+          
+      # Add PostgreSQL to the PATH.
+      - name: Add PostgreSQL to the PATH
+        run: echo 'export PATH="/opt/homebrew/opt/postgresql@${{ matrix.postgresql-version }}/bin:$PATH"' >> $GITHUB_ENV
+
+      # Add PostgreSQL fusionauth user with default password.
+      - name: Add PostgreSQL fusionauth user
+        run: psql --command="CREATE USER fusionauth PASSWORD 'fusionauth'" --command="\du" postgres
+          
+      # Add PostgreSQL fusionauth database.
+      - name: Add PostgreSQL fusionauth database
+        run: createdb --owner=fusionauth fusionauth
+
+      # Install FusionAuth Search with brew.
+      - name: Install FusionAuth Search
+        run: brew install --formula ./Formula/fusionauth-search.rb -v
+
+      # Install FusionAuth App with brew.
+      - name: Install FusionAuth App
+        run: brew install --formula ./Formula/fusionauth-app.rb -v
+
+      # Configure FusionAuth App with silent mode.
+      - name: Configure FusionAuth App
         run: |
-          brew install postgresql
-          brew install --formula ./Formula/fusionauth-search.rb -v
-          brew install --formula ./Formula/fusionauth-app.rb -v
-          brew services
-          brew services start postgresql
-          sleep 10
-          brew services start fusionauth-search
-          sleep 10
-          brew services start fusionauth-app
-          sleep 10
-          brew services
-          sleep 10
-          brew services
+          echo "" >> /opt/homebrew/etc/fusionauth/fusionauth.properties
+          echo "fusionauth-app.kickstart.file=kickstart/kickstart.json" >> /opt/homebrew/etc/fusionauth/fusionauth.properties
+          echo "fusionauth-app.silent-mode=true" >> /opt/homebrew/etc/fusionauth/fusionauth.properties
+
+      # Start FusionAuth Search.
+      - name: Start FusionAuth Search
+        run: brew services start fusionauth-search -v
+
+      # Start FusionAuth App.
+      - name: Start FusionAuth App
+        run: brew services start fusionauth-app -v
+
+      # Wait for FusionAuth App to start and run Quickstart.
+      - name: Wait for FusionAuth App to start and configure
+        run: |
+          sleep 20
           curl http://localhost:9011/api/status
           sleep 10
           cat /opt/homebrew/var/log/fusionauth/fusionauth-app.log
-          brew services stop fusionauth-app
-          sleep 10
-          brew services stop fusionauth-search
-          sleep 10
-          brew services stop postgresql
-          sleep 10
-          brew services
-          sleep 10
-          brew uninstall --formula ./Formula/fusionauth-app.rb -v
-          brew uninstall --formula ./Formula/fusionauth-search.rb -v
+
+      # Perform E2E test.
+      # tbd
+
+      # Stop FusionAuth App.
+      - name: Stop FusionAuth App
+        run: brew services stop fusionauth-app -v
+
+      # Stop FusionAuth Search.
+      - name: Stop FusionAuth Search
+        run: brew services stop fusionauth-search -v
+
+      # Stop PostgreSQL.
+      - name: Stop PostgreSQL
+        run: brew services stop postgresql@${{ matrix.postgresql-version }} -v
