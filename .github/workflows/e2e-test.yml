@@ -72,7 +72,7 @@ jobs:
       - name: Configure FusionAuth App
         run: |
           echo "" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
-          echo "fusionauth-app.kickstart.file=kickstart/kickstart.json" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          echo "fusionauth-app.kickstart.file=$(echo $GITHUB_WORKSPACE)/kickstart/kickstart.json" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
           echo "fusionauth-app.silent-mode=true" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
           cat $(brew --prefix)/etc/fusionauth/fusionauth.properties
 
