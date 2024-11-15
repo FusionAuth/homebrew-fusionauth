@@ -84,6 +84,10 @@ jobs:
       - name: Start FusionAuth App
         run: brew services start fusionauth-app -v
 
+      # Check Brew services status.
+      - name: Check Brew services status
+        run: brew services list
+
       # Check FusionAuth status 10 times with increasing wait times
       # Continue if FusionAuth status is OK or fail at the end.
       - name: Check FusionAuth status
@@ -92,12 +96,12 @@ jobs:
             if curl -s http://localhost:9011/api/status | grep -qi "ok"; then
               echo "FusionAuth is up and running."
               exit 0
-              break
             else
               echo "FusionAuth is not up and running. Waiting for $(expr 10 \* $i) seconds."
               sleep $(expr 10 \* $i)
             fi
           done
+          exit 1
 
       # Check KickstartRunner execution 10 times with increasing wait times
       # Continue if KickstartRunner execution is OK or fail at the end.
@@ -108,12 +112,12 @@ jobs:
             if cat $(brew --prefix)/var/log/fusionauth/fusionauth-app.log | grep "KickstartRunner" | grep -q "Summary"; then
               echo "KickstartRunner execution is OK."
               exit 0
-              break
             else
               echo "KickstartRunner execution is not OK. Waiting for $(expr 10 \* $i) seconds."
               sleep $(expr 10 \* $i)
             fi
           done
+          exit 1
 
       # Read FusionAuth App logs.
       - name: Read FusionAuth App logs
