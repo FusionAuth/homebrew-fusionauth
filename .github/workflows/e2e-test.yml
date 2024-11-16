@@ -101,6 +101,7 @@ jobs:
               sleep $(expr 10 \* $i)
             fi
           done
+          cat $(brew --prefix)/var/log/fusionauth/fusionauth-app.log
           exit 1
 
       # Check KickstartRunner execution 10 times with increasing wait times
@@ -117,6 +118,7 @@ jobs:
               sleep $(expr 10 \* $i)
             fi
           done
+          cat $(brew --prefix)/var/log/fusionauth/fusionauth-app.log
           exit 1
 
       # Read FusionAuth App logs.
