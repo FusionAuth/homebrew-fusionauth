@@ -26,7 +26,7 @@ class FusionauthApp < Formula
   end
 
   service do
-    run ["sh", "start.sh"]
+    run ["sh", "start.sh --debug"]
     keep_alive true
     working_dir opt_prefix/"fusionauth-app/bin"
     log_path var/"log/fusionauth/fusionauth-app.log"
