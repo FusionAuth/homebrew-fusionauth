@@ -60,10 +60,6 @@ jobs:
       - name: Add PostgreSQL fusionauth database
         run: createdb --owner=fusionauth fusionauth
 
-      # Install FusionAuth Search with brew.
-      - name: Install FusionAuth Search
-        run: brew install --formula ./Formula/fusionauth-search.rb -v
-
       # Install FusionAuth App with brew.
       - name: Install FusionAuth App
         run: brew install --formula ./Formula/fusionauth-app.rb -v
@@ -75,10 +71,6 @@ jobs:
           echo "fusionauth-app.kickstart.file=$(echo $GITHUB_WORKSPACE)/kickstart/kickstart.json" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
           echo "fusionauth-app.silent-mode=true" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
           cat $(brew --prefix)/etc/fusionauth/fusionauth.properties
-
-      # Start FusionAuth Search.
-      - name: Start FusionAuth Search
-        run: brew services start fusionauth-search -v
 
       # Start FusionAuth App.
       - name: Start FusionAuth App
@@ -135,10 +127,6 @@ jobs:
       # Stop FusionAuth App.
       - name: Stop FusionAuth App
         run: brew services stop fusionauth-app -v
-
-      # Stop FusionAuth Search.
-      - name: Stop FusionAuth Search
-        run: brew services stop fusionauth-search -v
 
       # Stop PostgreSQL.
       - name: Stop PostgreSQL
