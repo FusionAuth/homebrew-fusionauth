@@ -1,22 +1,8 @@
-# Copyright (c) 2024, FusionAuth, All Rights Reserved
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the License is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-# either express or implied. See the License for the specific
-# language governing permissions and limitations under the License.
-
 class FusionauthSearch < Formula
   desc "FusionAuth Search"
   homepage "https://fusionauth.io"
-  url "https://files.fusionauth.io/products/fusionauth/1.53.1/fusionauth-search-1.53.1.zip"
-  sha256 "976823fa042c35ce561863550c3300c0d19e8092b93befd12b2e2e498cd39f4c"
+  url "https://files.fusionauth.io/products/fusionauth/1.54.0/fusionauth-search-1.54.0.zip"
+  sha256 "a93d71664ee977595b8d9e1010938e9adf38e386a832ee459c960a2198838b2b"
 
   def install
     prefix.install "fusionauth-search"
@@ -46,31 +32,11 @@ class FusionauthSearch < Formula
     EOS
   end
 
-  # http://www.manpagez.com/man/5/launchd.plist/
-  def plist; <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-      <dict>
-        <key>KeepAlive</key>
-        <true/>
-        <key>Label</key>
-        <string>#{plist_name}</string>
-        <key>ProgramArguments</key>
-        <array>
-          <string>sh</string>
-          <string>./elasticsearch</string>
-        </array>
-        <key>RunAtLoad</key>
-        <true/>
-        <key>WorkingDirectory</key>
-        <string>#{prefix}/fusionauth-search/elasticsearch/bin</string>
-        <key>StandardOutPath</key>
-        <string>#{var}/log/fusionauth/fusionauth-search.log</string>
-        <key>StandardErrorPath</key>
-        <string>#{var}/log/fusionauth/fusionauth-search.log</string>
-      </dict>
-      </plist>
-    EOS
+  service do
+    run ["sh", "./elasticsearch"]
+    keep_alive true
+    working_dir opt_prefix/"fusionauth-search/elasticsearch/bin"
+    log_path var/"log/fusionauth/fusionauth-search.log"
+    error_log_path var/"log/fusionauth/fusionauth-search.log"
   end
 end
