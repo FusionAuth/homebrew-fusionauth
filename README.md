@@ -35,6 +35,19 @@ brew upgrade fusionauth-search
 Logs: `/usr/local/var/log/fusionauth/`
 Config file: `/usr/local/etc/fusionauth/fusionauth.properties`
 
+## Test
+If fusionauth is already installed via homebrew, you need to uninstall it.
+    
+```bash
+brew uninstall fusionauth-app fusionauth-search
+```
+
+Then to test that this works, run the following command from this diretory:
+
+```bash
+brew install ./Formula/fusionauth-app.rb
+brew install ./Formula/fusionauth-search.rb
+```
 
 ## Release
 
