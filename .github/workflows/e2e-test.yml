@@ -31,7 +31,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ "macos-14", "macos-13" ]
+        os: [ "macos-14", "macos-13", "linux/amd64" ]
         postgresql-version: [ "14", "15", "16" ]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -41,28 +41,31 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       # Install FusionAuth with brew.
-      - name: Install PostgreSQL
-        run: brew install postgresql@${{ matrix.postgresql-version }} -v
+#      - name: Install PostgreSQL
+#        run: brew install postgresql@${{ matrix.postgresql-version }} -v
           
       # Start PostgreSQL with brew.
-      - name: Start PostgreSQL
-        run: brew services start postgresql@${{ matrix.postgresql-version }} -v
+#      - name: Start PostgreSQL
+#        run: brew services start postgresql@${{ matrix.postgresql-version }} -v
           
       # Add PostgreSQL to the PATH.
-      - name: Add PostgreSQL to the PATH
-        run: echo "$(brew --prefix postgresql@${{matrix.postgresql-version }})/bin" >> $GITHUB_PATH
+#      - name: Add PostgreSQL to the PATH
+#        run: echo "$(brew --prefix postgresql@${{matrix.postgresql-version }})/bin" >> $GITHUB_PATH
 
       # Add PostgreSQL fusionauth user with default password.
-      - name: Add PostgreSQL fusionauth user
-        run: psql --command="CREATE USER fusionauth PASSWORD 'fusionauth'" --command="\du" postgres
+#      - name: Add PostgreSQL fusionauth user
+#        run: psql --command="CREATE USER fusionauth PASSWORD 'fusionauth'" --command="\du" postgres
           
       # Add PostgreSQL fusionauth database.
-      - name: Add PostgreSQL fusionauth database
-        run: createdb --owner=fusionauth fusionauth
+#      - name: Add PostgreSQL fusionauth database
+#        run: createdb --owner=fusionauth fusionauth
 
       # Install FusionAuth Search with brew.
       - name: Install FusionAuth Search
-        run: brew install --formula ./Formula/fusionauth-search.rb -v
+        run: |
+          docker --version
+          brew tap fusionauth/fusionauth
+          brew install fusionauth-search
 
       # Install FusionAuth App with brew.
       - name: Install FusionAuth App
