@@ -68,7 +68,7 @@ echo "fusionauth-app.kickstart.file=/path/to/your/kickstart/kickstart.json" >> $
 # Add the silent mode property
 echo "fusionauth-app.silent-mode=true" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
 # Change the search.type=database to search.type=elasticsearch
-sed -i -e 's/search.type=database/search.type=elasticsearch/g' $(brew --prefix)/etc/fusionauth/fusionauth.properties
+sed -i '' 's/search.type=database/search.type=elasticsearch/g' $(brew --prefix)/etc/fusionauth/fusionauth.properties
 # Add the open search URL
 echo "search.servers=http://localhost:9200" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
 # Check the full configuration
