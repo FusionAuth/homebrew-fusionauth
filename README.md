@@ -71,7 +71,7 @@ brew install fusionauth-app
 end::forDocSiteInstall[]
 -->
 
-### Configure For Silent Configuration
+### Silent Configuration
 
 <!--
 tag::forDocSiteConfiguration[]
