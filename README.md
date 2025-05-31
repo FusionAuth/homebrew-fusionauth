@@ -11,7 +11,13 @@ The following examples assume you will be installing `fusionauth-app`. And `post
 
 ## Prerequisites
 
+<!--
+tag::forDocSitePrerequisites[]
+-->
 FusionAuth requires a database and a search engine. The recommended database is PostgreSQL, and the recommended search engine is OpenSearch.
+
+> [!IMPORTANT]
+> fusinauth-search was announced end of life in [FusionAuth Version 1.48.0](https://fusionauth.io/docs/release-notes/#version-1-48-0) and is no longer available for homebrew. It is recommended to use OpenSearch instead.
 
 ### Postgres
 
@@ -46,19 +52,31 @@ brew install opensearch
 brew services info opensearch
 brew services start opensearch
 ```
+<!--
+tag::forDocSitePrerequisites[]
+-->
 
-## FusionAuth
+## Install FusionAuth
 
+<!--
+tag::forDocSiteInstall[]
+-->
 To install FusionAuth using Homebrew, you can use the following commands:
 
 ```bash
 brew tap fusionauth/fusionauth
 brew install fusionauth-app
 ```
+<!--
+end::forDocSiteInstall[]
+-->
 
-### Configure
+### Configure For Silent Configuration
 
-After installing FusionAuth, you can configure it before starting the service to run a silent configuration. . The configuration file is located at `$(brew --prefix)/etc/fusionauth/fusionauth.properties`.
+<!--
+tag::forDocSiteConfiguration[]
+-->
+After installing FusionAuth, you can configure it before starting the service to run a silent configuration. The configuration file is located at `$(brew --prefix)/etc/fusionauth/fusionauth.properties`.
 
 ```bash
 # Add linebreak to the end of the fusionauth.properties file
@@ -74,6 +92,16 @@ echo "search.servers=http://localhost:9200" >> $(brew --prefix)/etc/fusionauth/f
 # Check the full configuration
 cat $(brew --prefix)/etc/fusionauth/fusionauth.properties
 ```
+<!--
+end::forDocSiteConfiguration[]
+-->
+
+## Manage FusionAuth
+
+<!--
+tag::forDocSiteManage[]
+-->
+After installing and configuring FusionAuth, you can manage the service using Homebrew.
 
 ### Start
 
@@ -112,3 +140,34 @@ To stop the FusionAuth service, you can use:
 ```bash
 brew services stop fusionauth-app
 ```
+<!--
+end::forDocSiteManage[]
+-->
+
+
+## Uninstall FusionAuth
+
+<!--
+tag::forDocSiteUninstall[]
+-->
+To uninstall FusionAuth, you can use the following command:
+
+```bash
+# Stop the FusionAuth service if it is running
+brew services stop fusionauth-app
+# Uninstall FusionAuth
+brew uninstall fusionauth-app
+```
+
+### Remove Configuration
+
+If you want to remove the configuration and log files as well, you can search for the files and folders in `$(brew --prefix)` and remove them manually.
+
+### Untap FusionAuth
+
+```bash
+brew untap fusionauth/fusionauth
+```
+<!--
+end::forDocSiteUninstall[]
+-->
