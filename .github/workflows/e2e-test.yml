@@ -168,7 +168,7 @@ jobs:
         uses: actions/upload-artifact@v4.6.2
         if: ${{ !cancelled() }}
         with:
-          name: fusionauth-homebrew-${{ matrix.postgresql-version }}-report-${{github.run_number}}-${{github.run_attempt}}
+          name: fusionauth-homebrew-${{ matrix.os }}-${{ matrix.postgresql-version }}-report-${{github.run_number}}-${{github.run_attempt}}
           path: ./playwright/playwright-report/
           retention-days: 30
 
