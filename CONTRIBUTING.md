@@ -45,7 +45,7 @@ We welcome contributions via pull requests. Here's how to submit a PR:
 2. Create a new branch for your changes
 3. Make your changes
 4. Test your changes thoroughly (see Testing section below)
-5. Submit a pull request to the `main` branch
+5. Submit a pull request to the `develop` branch
 6. Describe your changes in detail in the PR description
 
 When you are ready to submit your pull request, visit the main repository on GitHub and click the "Compare & pull request" button. Here you can select the branch you have been working on and create a pull request.
