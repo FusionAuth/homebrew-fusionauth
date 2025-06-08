@@ -51,19 +51,19 @@ jobs:
       # Install PostgreSQL with brew.
       - name: Install PostgreSQL
         run: brew install postgresql@${{ matrix.postgresql-version }} -v
-          
+
       # Start PostgreSQL with brew.
       - name: Start PostgreSQL
         run: brew services start postgresql@${{ matrix.postgresql-version }} -v
-          
+
       # Add PostgreSQL to the PATH.
       - name: Add PostgreSQL to the PATH
-        run: echo "$(brew --prefix postgresql@${{matrix.postgresql-version }})/bin" >> $GITHUB_PATH
+        run: echo "$(brew --prefix postgresql@${{ matrix.postgresql-version }})/bin" >> $GITHUB_PATH
 
       # Add PostgreSQL fusionauth user with default password.
       - name: Add PostgreSQL fusionauth user
         run: psql --command="CREATE USER fusionauth PASSWORD 'fusionauth'" --command="\du" postgres
-          
+
       # Add PostgreSQL fusionauth database.
       - name: Add PostgreSQL fusionauth database
         run: createdb --owner=fusionauth fusionauth
@@ -137,8 +137,40 @@ jobs:
       - name: Connect to FusionAuth App
         run: curl http://localhost:9011/api/status
 
-      # Perform E2E test.
-      # tbd
+      # Prepare Playwright tests.
+      - name: Setup Node
+        uses: actions/setup-node@v4.3.0
+        with:
+          node-version: lts/*
+
+      # Install Playwright dependencies.
+      - name: Install dependencies
+        run: npm ci
+        shell: bash
+        working-directory: ./playwright
+
+      # Install Playwright Browsers.
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        shell: bash
+        working-directory: ./playwright
+
+      # Run Playwright tests.
+      - name: Run Playwright tests
+        run: npx playwright test
+        env:
+          FUSIONAUTH_URL: http://localhost:9011/admin/
+        shell: bash
+        working-directory: ./playwright
+
+      # Upload Playwright test results.
+      - name: Upload Playwright results
+        uses: actions/upload-artifact@v4.6.2
+        if: ${{ !cancelled() }}
+        with:
+          name: fusionauth-homebrew-${{ matrix.postgresql-version }}-report-${{github.run_number}}-${{github.run_attempt}}
+          path: ./playwright/playwright-report/
+          retention-days: 30
 
       # Stop FusionAuth App.
       - name: Stop FusionAuth App
@@ -147,3 +179,15 @@ jobs:
       # Stop PostgreSQL.
       - name: Stop PostgreSQL
         run: brew services stop postgresql@${{ matrix.postgresql-version }} -v
+
+      # Stop OpenSearch.
+      - name: Stop OpenSearch
+        run: brew services stop opensearch -v
+
+      # Check Brew services status after stopping services.
+      - name: Check Brew services status after stopping
+        run: brew services list
+
+      # Remove FusionAuth App.
+      - name: Remove FusionAuth App
+        run: brew uninstall --formula ./Formula/fusionauth-app.rb -v
