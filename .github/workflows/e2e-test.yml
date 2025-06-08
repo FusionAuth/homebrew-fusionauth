@@ -6,7 +6,7 @@ name: E2E Test with latest FusionAuth
 on:
   # Triggers the workflow on pull request events but only for default and protected branches
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -40,7 +40,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.2.2
 
-      # Install FusionAuth with brew.
+      # Install OpenSearch with brew.
+      - name: Install OpenSearch
+        run: brew install opensearch -v
+
+      # Start OpenSearch with brew.
+      - name: Start OpenSearch
+        run: brew services start opensearch -v
+
+      # Install PostgreSQL with brew.
       - name: Install PostgreSQL
         run: brew install postgresql@${{ matrix.postgresql-version }} -v
           
@@ -64,12 +72,20 @@ jobs:
       - name: Install FusionAuth App
         run: brew install --formula ./Formula/fusionauth-app.rb -v
 
-      # Configure FusionAuth App with silent mode.
+      # Configure FusionAuth App with kickstart, silent mode, and opensearch.
       - name: Configure FusionAuth App
         run: |
+          # Add linebreak to the end of the fusionauth.properties file
           echo "" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          # Add your kickstart file path
           echo "fusionauth-app.kickstart.file=$(echo $GITHUB_WORKSPACE)/kickstart/kickstart.json" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          # Add the silent mode property
           echo "fusionauth-app.silent-mode=true" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          # Change the search.type=database to search.type=elasticsearch
+          sed -i '' 's/search.type=database/search.type=elasticsearch/g' $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          # Add the open search URL
+          echo "search.servers=http://localhost:9200" >> $(brew --prefix)/etc/fusionauth/fusionauth.properties
+          # Check the full configuration
           cat $(brew --prefix)/etc/fusionauth/fusionauth.properties
 
       # Start FusionAuth App.
