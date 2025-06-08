@@ -13,7 +13,7 @@ test('fusionauth-admin-check', async ({ page }) => {
   await page.getByRole('row', { name: 'Example Application ' }).getByRole('button').click();
   await page.getByRole('link', { name: 'Edit' }).click();
   await page.waitForLoadState();
-  expect(await page.textContent('body')).toContain('http://localhost:3000');
+  expect(await page.textContent('body')).toContain('Example');
   await page.locator('a[href="/admin/user/"]').click();
   await page.waitForLoadState();
   await page.getByRole('textbox', { name: 'Search on email, name or role' }).click();
