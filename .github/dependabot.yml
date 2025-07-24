@@ -1,0 +1,33 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/" # Uses default location of GitHub Workflows
+    schedule:
+      interval: "weekly"
+    groups:
+      prod-github-actions:
+        dependency-type: "production"
+      dev-github-actions:
+        dependency-type: "development"
+
+  # Maintain dependencies for npm in playwright
+  - package-ecosystem: "npm"
+    directory: "/playwright"
+    schedule:
+      interval: "weekly"
+    groups:
+      prod-minor-npm-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-minor-npm-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
