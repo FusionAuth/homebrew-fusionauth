@@ -37,7 +37,7 @@
       "body": {
         "key": {
           "algorithm": "RS256",
-          "name": "For Example Android App",
+          "name": "Example Application",
           "length": 2048
         }
       }
@@ -65,7 +65,7 @@
       "tenantId": "#{defaultTenantId}",
       "body": {
         "application": {
-          "name": "Example Android App",
+          "name": "Example Application",
           "oauthConfiguration": {
             "authorizedRedirectURLs": [
               "io.fusionauth.app:/oauth2redirect"
