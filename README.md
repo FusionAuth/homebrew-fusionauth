@@ -1,6 +1,7 @@
 # homebrew-fusionauth
 macOS [Homebrew](https://brew.sh/) tap for FusionAuth
 
+
 Easy installation of FusionAuth via Homebrew.
 
 Simply install and start the services. Then navigate to http://localhost:9011 and follow the setup prompts.
