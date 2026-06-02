@@ -18,6 +18,8 @@
 #
 # >  ./release.sh 1.10.1
 
+set -e
+
 # Download sha256 sum files
 rm -f fusionauth-app-${1}.zip.sha256
 wget --no-verbose "https://files.fusionauth.io/products/fusionauth/${1}/fusionauth-app-${1}.zip.sha256"
@@ -40,7 +42,7 @@ sed -i -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-app.rb
 rm fusionauth-app-${1}.zip.sha256
 
 git add .
-git commit -m"release ${1}"
+git commit --allow-empty -m"release ${1}"
 git push
 git tag ${1}
 git push --tags
