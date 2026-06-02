@@ -42,7 +42,7 @@ sed -i -E "s/sha256 \"(.*)\"$/sha256 \"${sum}\"/" ./Formula/fusionauth-app.rb
 rm fusionauth-app-${1}.zip.sha256
 
 git add .
-git commit -m"release ${1}"
+git commit --allow-empty -m"release ${1}"
 git push
 git tag ${1}
 git push --tags
