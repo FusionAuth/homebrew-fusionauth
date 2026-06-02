@@ -18,6 +18,8 @@
 #
 # >  ./release.sh 1.10.1
 
+set -e
+
 # Download sha256 sum files
 rm -f fusionauth-app-${1}.zip.sha256
 wget --no-verbose "https://files.fusionauth.io/products/fusionauth/${1}/fusionauth-app-${1}.zip.sha256"
