@@ -1,6 +1,2 @@
-# Intellij stuff
-.idea
-*.iws
 fusionauth-app-*.zip
 **/.DS_Store
-.savant/cache
