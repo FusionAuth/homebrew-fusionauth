@@ -66,6 +66,7 @@ To install FusionAuth using Homebrew, you can use the following commands:
 
 ```bash
 brew tap fusionauth/fusionauth
+brew trust fusionauth/fusionauth
 brew install fusionauth-app
 ```
 <!--
