@@ -1,8 +1,8 @@
 class FusionauthApp < Formula
   desc "FusionAuth App"
   homepage "https://fusionauth.io"
-  url "https://files.fusionauth.io/products/fusionauth/1.70.0/fusionauth-app-1.70.0.zip"
-  sha256 "4da0f81daf52443b120936bdc00517cbaa4965fb76dddc3c50b6724f92790c9c"
+  url "https://files.fusionauth.io/products/fusionauth/1.70.1/fusionauth-app-1.70.1.zip"
+  sha256 "b94e8d0c606578ef5e8be963da351fda79201d5df01488072045078051b62908"
 
   def install
     prefix.install "fusionauth-app"
